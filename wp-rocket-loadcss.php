@@ -76,6 +76,8 @@ function wprlc_dowork($P_OPTIONS, $WPR_EXISTS) {
 
 
 function wprlc_wp_head_inject() {
+	// we inject with an inline script to ensure that the loadCSS polyfill is IMMEDIATELY available, despite WP Rocket's js combine feature.
+	// The impact is significantly minimal, and ensures proper loading of css resources.
 	$inline_script = plugin_dir_path(__FILE__).'assets/js/filamentgroup.loadcss.min.js'; 
 	if (file_exists($inline_script)) {
 		echo '<script type="text/javascript">'.file_get_contents($inline_script).'</script>';
