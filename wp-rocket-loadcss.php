@@ -94,8 +94,10 @@ function wprlc_buffer_post_process($buffer) {
 	$find="(<link\\s+[^>]*rel\\s*=\\s*(['\"])stylesheet\\2.*?>)(?:(?=.*<\\/head))"; // the non capture lookahead is technically non-performant. But performance as measured in ms has been determinedly inconsequential (based on content load of several very large raw html loads), therefore I'm personally quite happy with it.
 	preg_match_all("/".$find."/smix",$buffer,$matches,PREG_SET_ORDER);
 	foreach($matches as $link) {
+		$noscript='<noscript>'.$link[1].'</noscript>';
 		$new_link=str_replace("stylesheet","preload", $link[1]);
 		$new_link=str_replace(" rel",' as="style" onload="this.onload=null;this.rel=\'stylesheet\'" rel',$new_link);
+		$new_link.=$noscript;
 		$buffer=str_replace($link[1],$new_link,$buffer);
 	}
     return $buffer;
