@@ -103,7 +103,7 @@ function wprlc_buffer_post_process($buffer) {
 
 
 function wprlc_forcemode_buffer_start() {
-    ob_start("egbp_buffer_post_process");
+    ob_start("wprlc_buffer_post_process");
 }
 function wprlc_forcemode_buffer_end() {
     ob_end_flush();
