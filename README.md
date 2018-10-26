@@ -10,6 +10,10 @@ That way an unstyled flash is not seen on page load (if properly configured of c
 
 **This plugin will boost your [Lighthouse](https://developers.google.com/web/tools/lighthouse/) and [PageSpeed Insight](https://developers.google.com/speed/pagespeed/insights/) scores.**
   
+## Plugin Mission 
+We firmly believe that [WP Rocket](https://wp-rocket.me/) should implement this as a **feature** of their plugin.  
+If that takes place, we will update this plugin to mark it as deprecated.  
+
 ## Requirements: 
 * If you intend for logged-in users to see the effect, you must enable WP-Rocket's setting called "caching for Logged-In Users"
 * Alternatively, you can run the plugin without WP-Rocket, despite it's intended purpose.    (>^.^)>
