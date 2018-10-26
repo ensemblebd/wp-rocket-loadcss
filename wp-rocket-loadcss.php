@@ -8,19 +8,18 @@
  * that starts the plugin.
  *
  * @link              https://ensemblegroup.net
- * @since             0.1.0
- * @package           wp_rocket_loadCss
+ * @package           ehnance_wp_rocket_loadCss
  *
  * @wordpress-plugin
  * Plugin Name:       WP Rocket LoadCSS
  * Plugin URI:        https://github.com/ensemblebd/wp-rocket-loadcss
  * Description:       WordPress plugin to quickly modify php output with appropriate loadCSS syntax.
- * Version:           0.0.0.1
+ * Version:           0.0.0.2
  * Author:            Ensemble Group
  * Author URI:        https://ensemblegroup.net
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       wp-rocket-loadcss
+ * Text Domain:       ehnance-wp-rocket-loadcss
  */
  
 defined( 'ABSPATH' ) or die();
