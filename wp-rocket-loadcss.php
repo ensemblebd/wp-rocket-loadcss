@@ -45,31 +45,29 @@ if (1 == $P_OPTIONS['buffer_override']) {
 }
 
 
-if ($WPROCKET_ACTIVE_OR_EXISTANT || $OPT_FORCE_EXECUTE) {
-	wprlc_dowork();
+if (!is_admin() && ($WPROCKET_ACTIVE_OR_EXISTANT || $OPT_FORCE_EXECUTE)) {
+	wprlc_dowork($P_OPTIONS, $WPROCKET_ACTIVE_OR_EXISTANT);
 }
 
-function wprlc_dowork() {
+function wprlc_dowork($P_OPTIONS, $WPR_EXISTS) {
 	$opt_ShouldInjectLoadCSS = ($P_OPTIONS['inject_loadcss'] == 1);
 	$opt_ShouldModifyOutputBuffer = ($P_OPTIONS['modify_output_buffer'] == 1);
+	$opt_ForceBufferProcessor = ($P_OPTIONS['buffer_override'] == 1);
 	
-	if (!is_admin()) { // todo: consider whether to expose an option instead. Does it even make sense for administration page css to be deferred? I have yet to see a need.
-		if ($opt_ShouldInjectLoadCSS) {
-			add_action('wp_head', 'wprlc_wp_head_inject');
-		}
-		if ($opt_ShouldModifyOutputBuffer) {
-			if (!$WPROCKET_ACTIVE_OR_EXISTANT && $OPT_FORCE_EXECUTE) {
-				if (substr( $_SERVER['REQUEST_URI'], 0, 4 ) === "/amp") return; // to support amp pages. We should not make any changes in such a case.
-				$path = home_url(add_query_arg(null, null));
-				$parts = explode(".", $path);
-				if (stristr($parts[count($parts) - 1], "xml") === false && stristr($parts[count($parts) - 1], "xsl") === false) { // to support yoast SEO xml sitemap. We should not make any changes, in such a case.
-					// if we arrived here, then we are a.) Not an admin page, b.) not an amp page, and c.) not yoast's xml sitemap. Excellent.. lets do it..
-					add_action('after_setup_theme', 'wprlc_forcemode_buffer_start', 1);
-					add_action('shutdown', 'wprlc_forcemode_buffer_end', 999999999); // large priority in case someone else is doing fancy stuff too.
-				}
-			} else {
-				
+	if ($opt_ShouldInjectLoadCSS) {
+		add_action('wp_head', 'wprlc_wp_head_inject');
+	}
+	if ($opt_ShouldModifyOutputBuffer) {
+		if (!$WPR_EXISTS && $opt_ForceBufferProcessor) {
+			if (substr( $_SERVER['REQUEST_URI'], 0, 4 ) === "/amp") return; // to support amp pages. We should not make any changes in such a case.
+			$path = home_url(add_query_arg(null, null));
+			$parts = explode(".", $path);
+			if (stristr($parts[count($parts) - 1], "xml") === false && stristr($parts[count($parts) - 1], "xsl") === false) { // to support yoast SEO xml sitemap. We should not make any changes, in such a case.
+				// if we arrived here, then we are a.) Not an admin page, b.) not an amp page, and c.) not yoast's xml sitemap. Excellent.. lets do it..
+				add_action('after_setup_theme', 'wprlc_forcemode_buffer_start', 1);
+				add_action('shutdown', 'wprlc_forcemode_buffer_end', 999999999); // large priority in case someone else is doing fancy stuff too.
 			}
+		} else {
 			add_filter('rocket_buffer','wprlc_buffer_post_process', 999999999, 1); // large priority in case someone else is doing fancy stuff too.
 		}
 	}
