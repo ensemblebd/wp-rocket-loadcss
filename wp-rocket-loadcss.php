@@ -94,7 +94,12 @@ function wprlc_buffer_post_process($buffer) {
 	preg_match_all("/".$find."/smix",$buffer,$matches,PREG_SET_ORDER);
 	foreach($matches as $link) {
 		$noscript='<noscript>'.$link[1].'</noscript>';
-		$new_link=str_replace("stylesheet","preload", $link[1]);
+		$noscript='<noscript>'.$link[1].'</noscript>';
+		if (stristr($link[1],'="stylesheet')!==false) $new_link=str_ireplace('="stylesheet','="preload', $link[1]);
+		else if (stristr($link[1],"='stylesheet")!==false) $new_link=str_ireplace("='stylesheet","='preload", $link[1]);
+		else {
+			$new_link=str_ireplace("link ","link rel=\"preload\" ", $link[1]);
+		}
 		$new_link=str_replace(" rel",' as="style" onload="this.onload=null;this.rel=\'stylesheet\'" rel',$new_link);
 		$new_link.=$noscript;
 		$buffer=str_replace($link[1],$new_link,$buffer);
