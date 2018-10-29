@@ -43,3 +43,4 @@ Just paste your own page's url or html into the appropriate variable @ the top.
 And you can test this plugin's regex as well: [Wordpress.com html - links filtered by regex](https://regex101.com/r/xsugT7/1/)  
 
 Github link is here: [Click](https://github.com/ensemblebd/wp-rocket-loadcss)  
+Wordpress Plugin is here: [Click](https://wordpress.org/plugins/enhance-wp-rocket-loadcss/)
