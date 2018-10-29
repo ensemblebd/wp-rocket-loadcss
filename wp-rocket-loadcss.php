@@ -14,7 +14,7 @@
  * Plugin Name:       WP Rocket LoadCSS
  * Plugin URI:        https://github.com/ensemblebd/wp-rocket-loadcss
  * Description:       WordPress plugin to quickly modify php output with appropriate loadCSS syntax.
- * Version:           0.0.0.2
+ * Version:           1.1
  * Author:            Ensemble Group
  * Author URI:        https://ensemblegroup.net
  * License:           GPL-2.0+
