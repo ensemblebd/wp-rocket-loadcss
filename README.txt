@@ -73,6 +73,12 @@ Github link is here: [Click](https://github.com/ensemblebd/wp-rocket-loadcss)
 
 == Upgrade Notice ==
 
+= 1.4 =
+Improved error handling.
+
+= 1.3 =
+More stable runtime approach.
+
 = 1.0 =
 The first release of the plugin.
 
@@ -83,6 +89,13 @@ The first release of the plugin.
 4. Sample Regex
 
 == Changelog ==
+
+= 1.4 =
+* Fixed bugs with get_option() variable usage(proofing conditions), wrapped executions in try/catch to prevent potential for an exception to bubble up and crash site, and added logging for exceptions. 
+* Adjusted readme to indicate DEPRECATED status of this plugin, being that WpRocket now has an asynchronous css loader. 
+
+= 1.3 =
+* Adjusted the main runtime to utilize better detection for string replacement, to handle more scenarios (just in case).
 
 = 1.0 =
 
