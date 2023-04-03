@@ -14,7 +14,7 @@
  * Plugin Name:       WP Rocket LoadCSS
  * Plugin URI:        https://github.com/ensemblebd/wp-rocket-loadcss
  * Description:       WordPress plugin to quickly modify php output with appropriate loadCSS syntax.
- * Version:           1.4
+ * Version:           1.5
  * Author:            Ensemble Group
  * Author URI:        https://ensemblegroup.net
  * License:           GPL-2.0+
@@ -31,12 +31,16 @@ if( is_admin() ) {
 
 
 $WPROCKET_ACTIVE_OR_EXISTANT = false;
-//include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); // wp-documentation has this, but it does not appear to be necessary. 
+
+if (!function_exists('is_plugin_active')) {
+	include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+}
 if (is_plugin_active("wp-rocket/wp-rocket.php")) {
 	$WPROCKET_ACTIVE_OR_EXISTANT = true;
 } else if (defined('WP_ROCKET_VERSION')) {
 	$WPROCKET_ACTIVE_OR_EXISTANT = true;
 }
+
 $P_OPTIONS = get_option('wprlc_settings');
 $OPT_FORCE_EXECUTE = false;
 if ($P_OPTIONS !== FALSE && isset($P_OPTIONS['buffer_override']) && 1 == $P_OPTIONS['buffer_override']) {

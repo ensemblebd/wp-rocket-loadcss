@@ -3,8 +3,8 @@
 Contributors: ensemblebd
 Tags: wprocket, loadcss, pagespeed, lighthouse, defer, async
 Requires at least: 4.6
-Tested up to: 6.2
-Stable tag: 1.4
+Tested up to: 6.2.0
+Stable tag: 1.5
 Requires PHP: 5.2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -72,6 +72,8 @@ Github link is here: [Click](https://github.com/ensemblebd/wp-rocket-loadcss)
 
 
 == Upgrade Notice ==
+= 1.5 = 
+Fix for rare but possible scenario where plugin could crash if function isn't available.
 
 = 1.4 =
 Improved error handling.
@@ -89,6 +91,8 @@ The first release of the plugin.
 4. Sample Regex
 
 == Changelog ==
+= 1.5 =
+* Fix for rare but possible scenario where plugin could crash if function isn't available. is_plugin_active()
 
 = 1.4 =
 * Fixed bugs with get_option() variable usage(proofing conditions), wrapped executions in try/catch to prevent potential for an exception to bubble up and crash site, and added logging for exceptions. 
